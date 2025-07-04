@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # File Watch Server Quick Start Script
-# This script demonstrates how to use the file-watch-server application
+# This script demonstrates how to use the fws application
 
 set -e
 

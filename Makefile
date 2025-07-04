@@ -3,7 +3,7 @@
 .PHONY: build clean test deps install-deps run-uploader run-watcher init-config help
 
 # Variables
-APP_NAME = file-watch-server
+APP_NAME = fws
 GO_VERSION = 1.21
 BUILD_DIR = dist
 BINARY_NAME = fws

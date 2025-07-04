@@ -270,8 +270,8 @@ Requires=docker.service
 [Service]
 Type=simple
 User=deploy
-WorkingDirectory=/opt/file-watch-server
-ExecStart=/usr/local/bin/fws --config /opt/file-watch-server/config.json --daemon
+WorkingDirectory=/opt/fws
+ExecStart=/usr/local/bin/fws --config /opt/fws/config.json --daemon
 Restart=always
 RestartSec=10
 
@@ -282,8 +282,8 @@ WantedBy=multi-user.target
 Enable and start the service:
 
 ```bash
-sudo systemctl enable file-watch-server
-sudo systemctl start file-watch-server
+sudo systemctl enable fws
+sudo systemctl start fws
 ```
 
 ## Security Considerations

@@ -1,4 +1,4 @@
-# Sample Dockerfile for testing file-watch-server
+# Sample Dockerfile for testing fws
 FROM nginx:alpine
 
 # Copy a simple index.html
