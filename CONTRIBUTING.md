@@ -80,7 +80,7 @@ For feature requests, please include:
 1. **Clone the repository**:
 
    ```bash
-   git clone https://github.com/umarahsan/fws.git
+   git clone https://github.com/ahsanumar/fws.git
    cd fws
    ```
 

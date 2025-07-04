@@ -1,4 +1,4 @@
-module github.com/umarahsan/fws
+module github.com/ahsanumar/fws
 
 go 1.21
 

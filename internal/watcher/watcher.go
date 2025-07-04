@@ -10,8 +10,8 @@ import (
 
 	"github.com/fsnotify/fsnotify"
 
-	"github.com/umarahsan/fws/internal/config"
-	"github.com/umarahsan/fws/internal/utils"
+	"github.com/ahsanumar/fws/internal/config"
+	"github.com/ahsanumar/fws/internal/utils"
 )
 
 type Watcher struct {

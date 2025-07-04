@@ -8,10 +8,10 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"github.com/umarahsan/fws/internal/config"
-	"github.com/umarahsan/fws/internal/uploader"
-	"github.com/umarahsan/fws/internal/utils"
-	"github.com/umarahsan/fws/internal/watcher"
+	"github.com/ahsanumar/fws/internal/config"
+	"github.com/ahsanumar/fws/internal/uploader"
+	"github.com/ahsanumar/fws/internal/utils"
+	"github.com/ahsanumar/fws/internal/watcher"
 )
 
 var (
@@ -23,7 +23,7 @@ var (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "file-watch-server",
+	Use:   "fws",
 	Short: "A file watcher and uploader for Docker containers",
 	Long: `File Watch Server is a tool that operates in two modes:
 

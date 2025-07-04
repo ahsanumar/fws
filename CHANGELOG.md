@@ -91,5 +91,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Security considerations
 - Installation and deployment instructions
 
-[Unreleased]: https://github.com/umarahsan/fws/compare/v1.0.0...HEAD
-[v1.0.0]: https://github.com/umarahsan/fws/releases/tag/v1.0.0
+[Unreleased]: https://github.com/ahsanumar/fws/compare/v1.0.0...HEAD
+[v1.0.0]: https://github.com/ahsanumar/fws/releases/tag/v1.0.0

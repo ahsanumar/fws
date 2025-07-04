@@ -24,7 +24,7 @@ Install the latest version with a single command:
 
 ```bash
 # Install from GitHub releases
-curl -fsSL https://raw.githubusercontent.com/umarahsan/fws/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/ahsanumar/fws/main/install.sh | bash
 ```
 
 ### 📦 Using Go Install
@@ -32,16 +32,16 @@ curl -fsSL https://raw.githubusercontent.com/umarahsan/fws/main/install.sh | bas
 If you have Go installed:
 
 ```bash
-go install github.com/umarahsan/fws@latest
+go install github.com/ahsanumar/fws@latest
 ```
 
 ### 📥 Manual Download
 
-Download pre-built binaries from [GitHub Releases](https://github.com/umarahsan/fws/releases):
+Download pre-built binaries from [GitHub Releases](https://github.com/ahsanumar/fws/releases):
 
 ```bash
 # Example for Linux AMD64
-wget https://github.com/umarahsan/fws/releases/latest/download/fws-linux-amd64.tar.gz
+wget https://github.com/ahsanumar/fws/releases/latest/download/fws-linux-amd64.tar.gz
 tar -xzf fws-linux-amd64.tar.gz
 sudo mv fws-linux-amd64 /usr/local/bin/fws
 sudo chmod +x /usr/local/bin/fws
@@ -51,7 +51,7 @@ sudo chmod +x /usr/local/bin/fws
 
 ```bash
 # Clone the repository
-git clone https://github.com/umarahsan/fws.git
+git clone https://github.com/ahsanumar/fws.git
 cd fws
 
 # Build and install

@@ -3,7 +3,7 @@
 # FWS (File Watch Server) Installation Script
 # 
 # This script installs the latest version of fws from GitHub releases
-# Usage: curl -fsSL https://raw.githubusercontent.com/umarahsan/fws/main/install.sh | bash
+# Usage: curl -fsSL https://raw.githubusercontent.com/ahsanumar/fws/main/install.sh | bash
 
 set -e
 
@@ -15,7 +15,7 @@ BLUE='\033[0;34m'
 NC='\033[0m' # No Color
 
 # Configuration
-REPO="umarahsan/fws"
+REPO="ahsanumar/fws"
 BINARY_NAME="fws"
 INSTALL_DIR="/usr/local/bin"
 
