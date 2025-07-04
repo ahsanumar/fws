@@ -1,6 +1,6 @@
 package main
 
-import "file-watch-server/cmd"
+import "github.com/umarahsan/fws/cmd"
 
 func main() {
 	cmd.Execute()

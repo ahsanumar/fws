@@ -1,4 +1,4 @@
-module file-watch-server
+module github.com/umarahsan/fws
 
 go 1.21
 

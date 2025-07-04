@@ -18,25 +18,52 @@ A Golang application that automates Docker container deployment through file mon
 
 ## Installation
 
-### Prerequisites
+### 🚀 Quick Install (Recommended)
 
-- Go 1.21 or higher
-- Docker installed and running
-- SSH access to target servers (for uploader mode)
+Install the latest version with a single command:
 
-### Build from Source
+```bash
+# Install from GitHub releases
+curl -fsSL https://raw.githubusercontent.com/umarahsan/fws/main/install.sh | bash
+```
+
+### 📦 Using Go Install
+
+If you have Go installed:
+
+```bash
+go install github.com/umarahsan/fws@latest
+```
+
+### 📥 Manual Download
+
+Download pre-built binaries from [GitHub Releases](https://github.com/umarahsan/fws/releases):
+
+```bash
+# Example for Linux AMD64
+wget https://github.com/umarahsan/fws/releases/latest/download/fws-linux-amd64.tar.gz
+tar -xzf fws-linux-amd64.tar.gz
+sudo mv fws-linux-amd64 /usr/local/bin/fws
+sudo chmod +x /usr/local/bin/fws
+```
+
+### 🔨 Build from Source
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd file-watch-server
+git clone https://github.com/umarahsan/fws.git
+cd fws
 
-# Build the application
+# Build and install
 make build
-
-# Or install globally
 make install
 ```
+
+### Prerequisites
+
+- Docker installed and running
+- SSH access to target servers (for uploader mode)
+- For building from source: Go 1.21 or higher
 
 ## Quick Start
 

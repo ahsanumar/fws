@@ -8,10 +8,10 @@ import (
 
 	"github.com/spf13/cobra"
 
-	"file-watch-server/internal/config"
-	"file-watch-server/internal/uploader"
-	"file-watch-server/internal/utils"
-	"file-watch-server/internal/watcher"
+	"github.com/umarahsan/fws/internal/config"
+	"github.com/umarahsan/fws/internal/uploader"
+	"github.com/umarahsan/fws/internal/utils"
+	"github.com/umarahsan/fws/internal/watcher"
 )
 
 var (

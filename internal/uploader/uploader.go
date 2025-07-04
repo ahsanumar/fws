@@ -11,8 +11,8 @@ import (
 	"golang.org/x/crypto/ssh"
 	"golang.org/x/crypto/ssh/knownhosts"
 
-	"file-watch-server/internal/config"
-	"file-watch-server/internal/utils"
+	"github.com/umarahsan/fws/internal/config"
+	"github.com/umarahsan/fws/internal/utils"
 )
 
 type Uploader struct {
