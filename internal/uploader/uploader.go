@@ -179,12 +179,13 @@ func (u *Uploader) createSSHClient() (*ssh.Client, error) {
 	var hostKeyCallback ssh.HostKeyCallback
 	knownHostsFile := filepath.Join(os.Getenv("HOME"), ".ssh", "known_hosts")
 	if utils.FileExists(knownHostsFile) {
-		hostKeyCallback, err := knownhosts.New(knownHostsFile)
+		hkc, err := knownhosts.New(knownHostsFile)
 		if err != nil {
 			u.logger.Warn("Failed to load known_hosts, using insecure connection: %v", err)
 			hostKeyCallback = ssh.InsecureIgnoreHostKey()
+		} else {
+			hostKeyCallback = hkc
 		}
-		hostKeyCallback = hostKeyCallback
 	} else {
 		u.logger.Warn("known_hosts file not found, using insecure connection")
 		hostKeyCallback = ssh.InsecureIgnoreHostKey()
