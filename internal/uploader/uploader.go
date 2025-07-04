@@ -82,7 +82,7 @@ func (u *Uploader) buildDockerImage() error {
 	if u.config.BuildCommand != "" {
 		buildCmd = u.config.BuildCommand
 	} else {
-		buildCmd = fmt.Sprintf("docker build -t %s:%s %s", 
+		buildCmd = fmt.Sprintf("docker build -t %s:%s %s",
 			u.config.ImageName, u.config.ImageTag, u.config.DockerBuildPath)
 	}
 
@@ -101,7 +101,7 @@ func (u *Uploader) createTarball() (string, error) {
 	// Generate tarball filename with timestamp
 	timestamp := time.Now().Format("20060102-150405")
 	tarballName := fmt.Sprintf("%s_%s_%s.tar", u.config.ImageName, u.config.ImageTag, timestamp)
-	
+
 	var tarballPath string
 	if u.config.TarballPath != "" {
 		if err := utils.EnsureDir(u.config.TarballPath); err != nil {
@@ -113,9 +113,9 @@ func (u *Uploader) createTarball() (string, error) {
 	}
 
 	// Save Docker image to tarball
-	saveCmd := fmt.Sprintf("docker save %s:%s -o %s", 
+	saveCmd := fmt.Sprintf("docker save %s:%s -o %s",
 		u.config.ImageName, u.config.ImageTag, tarballPath)
-	
+
 	output, err := utils.ExecuteCommand(saveCmd, 10*time.Minute)
 	if err != nil {
 		return "", err
@@ -236,7 +236,7 @@ func (u *Uploader) scpUpload(client *ssh.Client, localPath string) error {
 
 	// Create SCP command
 	scpCmd := fmt.Sprintf("scp -t %s", remotePath)
-	
+
 	// Get stdin pipe
 	stdin, err := session.StdinPipe()
 	if err != nil {
@@ -285,4 +285,4 @@ func (u *Uploader) executePostBuildCommands() error {
 func (u *Uploader) cleanupTarball(tarballPath string) error {
 	u.logger.Info("Cleaning up tarball: %s", tarballPath)
 	return os.Remove(tarballPath)
-} 
+}

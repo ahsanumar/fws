@@ -8,40 +8,40 @@ import (
 
 type Config struct {
 	// Common settings
-	Mode     string `json:"mode"`     // "uploader" or "watcher"
+	Mode     string `json:"mode"`      // "uploader" or "watcher"
 	LogLevel string `json:"log_level"` // "debug", "info", "warn", "error"
-	
+
 	// Uploader settings
 	Uploader UploaderConfig `json:"uploader"`
-	
+
 	// Watcher settings
 	Watcher WatcherConfig `json:"watcher"`
 }
 
 type UploaderConfig struct {
-	DockerBuildPath    string `json:"docker_build_path"`    // Path to Dockerfile
-	ImageName          string `json:"image_name"`           // Docker image name
-	ImageTag           string `json:"image_tag"`            // Docker image tag
-	TarballPath        string `json:"tarball_path"`         // Local path to save tarball
-	RemoteHost         string `json:"remote_host"`          // SSH host
-	RemotePort         int    `json:"remote_port"`          // SSH port
-	RemoteUser         string `json:"remote_user"`          // SSH username
-	RemoteKeyPath      string `json:"remote_key_path"`      // SSH private key path
-	RemoteUploadPath   string `json:"remote_upload_path"`   // Remote upload directory
-	BuildCommand       string `json:"build_command"`        // Custom build command (optional)
-	PreBuildCommands   []string `json:"pre_build_commands"` // Commands before build
-	PostBuildCommands  []string `json:"post_build_commands"`// Commands after build
+	DockerBuildPath   string   `json:"docker_build_path"`   // Path to Dockerfile
+	ImageName         string   `json:"image_name"`          // Docker image name
+	ImageTag          string   `json:"image_tag"`           // Docker image tag
+	TarballPath       string   `json:"tarball_path"`        // Local path to save tarball
+	RemoteHost        string   `json:"remote_host"`         // SSH host
+	RemotePort        int      `json:"remote_port"`         // SSH port
+	RemoteUser        string   `json:"remote_user"`         // SSH username
+	RemoteKeyPath     string   `json:"remote_key_path"`     // SSH private key path
+	RemoteUploadPath  string   `json:"remote_upload_path"`  // Remote upload directory
+	BuildCommand      string   `json:"build_command"`       // Custom build command (optional)
+	PreBuildCommands  []string `json:"pre_build_commands"`  // Commands before build
+	PostBuildCommands []string `json:"post_build_commands"` // Commands after build
 }
 
 type WatcherConfig struct {
-	WatchDirectory     string `json:"watch_directory"`      // Directory to watch for tarballs
-	ContainerName      string `json:"container_name"`       // Container name to manage
-	ContainerPort      []string `json:"container_ports"`    // Port mappings
-	ContainerEnv       []string `json:"container_env"`      // Environment variables
-	ContainerVolumes   []string `json:"container_volumes"`  // Volume mappings
-	PreLoadCommands    []string `json:"pre_load_commands"`  // Commands before loading image
-	PostLoadCommands   []string `json:"post_load_commands"` // Commands after loading image
-	RestartPolicy      string   `json:"restart_policy"`     // Docker restart policy
+	WatchDirectory   string   `json:"watch_directory"`    // Directory to watch for tarballs
+	ContainerName    string   `json:"container_name"`     // Container name to manage
+	ContainerPort    []string `json:"container_ports"`    // Port mappings
+	ContainerEnv     []string `json:"container_env"`      // Environment variables
+	ContainerVolumes []string `json:"container_volumes"`  // Volume mappings
+	PreLoadCommands  []string `json:"pre_load_commands"`  // Commands before loading image
+	PostLoadCommands []string `json:"post_load_commands"` // Commands after loading image
+	RestartPolicy    string   `json:"restart_policy"`     // Docker restart policy
 }
 
 func LoadConfig(configPath string) (*Config, error) {
@@ -124,4 +124,4 @@ func (c *Config) Validate() error {
 	}
 
 	return nil
-} 
+}

@@ -51,15 +51,15 @@ func ExecuteCommand(command string, timeout time.Duration) (string, error) {
 
 	cmd := exec.CommandContext(ctx, "sh", "-c", command)
 	output, err := cmd.CombinedOutput()
-	
+
 	if ctx.Err() == context.DeadlineExceeded {
 		return "", fmt.Errorf("command timed out after %v: %s", timeout, command)
 	}
-	
+
 	if err != nil {
 		return string(output), fmt.Errorf("command failed: %s, output: %s", err.Error(), string(output))
 	}
-	
+
 	return string(output), nil
 }
 
@@ -69,15 +69,15 @@ func ExecuteCommands(commands []string, timeout time.Duration, logger *Logger) e
 		if strings.TrimSpace(cmd) == "" {
 			continue
 		}
-		
+
 		logger.Info("Executing command: %s", cmd)
 		output, err := ExecuteCommand(cmd, timeout)
-		
+
 		if err != nil {
 			logger.Error("Command failed: %s", err.Error())
 			return err
 		}
-		
+
 		if strings.TrimSpace(output) != "" {
 			logger.Debug("Command output: %s", strings.TrimSpace(output))
 		}
@@ -127,9 +127,9 @@ func GetTimestamp() string {
 // Daemonize runs the function in background as a daemon
 func Daemonize(fn func() error, logger *Logger) error {
 	logger.Info("Starting daemon process...")
-	
+
 	// Setup signal handling for graceful shutdown
 	// This is a simplified version - you might want to use a proper signal handling library
-	
+
 	return fn()
-} 
+}

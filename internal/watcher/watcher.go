@@ -15,11 +15,11 @@ import (
 )
 
 type Watcher struct {
-	config *config.WatcherConfig
-	logger *utils.Logger
+	config  *config.WatcherConfig
+	logger  *utils.Logger
 	watcher *fsnotify.Watcher
-	ctx    context.Context
-	cancel context.CancelFunc
+	ctx     context.Context
+	cancel  context.CancelFunc
 }
 
 func NewWatcher(cfg *config.WatcherConfig, logger *utils.Logger) *Watcher {
@@ -35,7 +35,7 @@ func NewWatcher(cfg *config.WatcherConfig, logger *utils.Logger) *Watcher {
 // Run starts the file watcher daemon
 func (w *Watcher) Run() error {
 	w.logger.Info("Starting file watcher daemon...")
-	
+
 	// Ensure watch directory exists
 	if err := utils.EnsureDir(w.config.WatchDirectory); err != nil {
 		return fmt.Errorf("failed to create watch directory: %w", err)
@@ -93,10 +93,10 @@ func (w *Watcher) handleFileEvent(event fsnotify.Event) {
 	// Handle file creation and write events
 	if event.Op&fsnotify.Create == fsnotify.Create || event.Op&fsnotify.Write == fsnotify.Write {
 		w.logger.Info("New tarball detected: %s", event.Name)
-		
+
 		// Wait a bit to ensure file is fully written
 		time.Sleep(2 * time.Second)
-		
+
 		// Process the tarball
 		if err := w.processTarball(event.Name); err != nil {
 			w.logger.Error("Failed to process tarball %s: %v", event.Name, err)
@@ -205,7 +205,7 @@ func (w *Watcher) startContainer() error {
 
 	// Build docker run command
 	runCmd := w.buildDockerRunCommand()
-	
+
 	output, err := utils.ExecuteCommand(runCmd, 2*time.Minute)
 	if err != nil {
 		return err
@@ -219,34 +219,34 @@ func (w *Watcher) startContainer() error {
 func (w *Watcher) buildDockerRunCommand() string {
 	var cmd strings.Builder
 	cmd.WriteString("docker run -d")
-	
+
 	// Add container name
 	cmd.WriteString(fmt.Sprintf(" --name %s", w.config.ContainerName))
-	
+
 	// Add restart policy
 	if w.config.RestartPolicy != "" {
 		cmd.WriteString(fmt.Sprintf(" --restart %s", w.config.RestartPolicy))
 	}
-	
+
 	// Add port mappings
 	for _, port := range w.config.ContainerPort {
 		cmd.WriteString(fmt.Sprintf(" -p %s", port))
 	}
-	
+
 	// Add environment variables
 	for _, env := range w.config.ContainerEnv {
 		cmd.WriteString(fmt.Sprintf(" -e %s", env))
 	}
-	
+
 	// Add volume mappings
 	for _, volume := range w.config.ContainerVolumes {
 		cmd.WriteString(fmt.Sprintf(" -v %s", volume))
 	}
-	
+
 	// Extract image name from tarball filename
 	imageName := w.extractImageNameFromTarball()
 	cmd.WriteString(fmt.Sprintf(" %s", imageName))
-	
+
 	return cmd.String()
 }
 
@@ -278,7 +278,7 @@ func (w *Watcher) GetContainerStatus() (string, error) {
 	if err != nil {
 		return "", err
 	}
-	
+
 	return strings.TrimSpace(output), nil
 }
 
@@ -289,6 +289,6 @@ func (w *Watcher) GetContainerLogs(lines int) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	
+
 	return output, nil
-} 
+}

@@ -90,7 +90,7 @@ func runApplication() {
 
 func runUploader(cfg *config.Config, logger *utils.Logger) {
 	logger.Info("Starting in uploader mode...")
-	
+
 	up := uploader.NewUploader(&cfg.Uploader, logger)
 	if err := up.Run(); err != nil {
 		logger.Fatal("Uploader failed: %v", err)
@@ -99,9 +99,9 @@ func runUploader(cfg *config.Config, logger *utils.Logger) {
 
 func runWatcher(cfg *config.Config, logger *utils.Logger, isDaemon bool) {
 	logger.Info("Starting in watcher mode...")
-	
+
 	w := watcher.NewWatcher(&cfg.Watcher, logger)
-	
+
 	if isDaemon {
 		// Run as daemon
 		err := utils.Daemonize(func() error {
@@ -279,4 +279,4 @@ func showLogs() {
 
 	fmt.Printf("Container '%s' logs:\n", cfg.Watcher.ContainerName)
 	fmt.Println(logs)
-} 
+}
