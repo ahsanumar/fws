@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Watch Server Demo</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f5f5f5;
+      }
+      .container {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+      h1 {
+        color: #333;
+        text-align: center;
+      }
+      .status {
+        background-color: #4caf50;
+        color: white;
+        padding: 10px;
+        border-radius: 5px;
+        text-align: center;
+        margin: 20px 0;
+      }
+      .info {
+        background-color: #e7f3ff;
+        border-left: 4px solid #2196f3;
+        padding: 15px;
+        margin: 20px 0;
+      }
+      .timestamp {
+        font-size: 0.9em;
+        color: #666;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>🚀 File Watch Server Demo</h1>
+
+      <div class="status">Container is running successfully!</div>
+
+      <div class="info">
+        <h3>Application Information</h3>
+        <p><strong>Service:</strong> Sample Web Application</p>
+        <p><strong>Version:</strong> 1.0.0</p>
+        <p><strong>Status:</strong> Active</p>
+        <p>
+          <strong>Deployed:</strong>
+          <span class="timestamp" id="timestamp"></span>
+        </p>
+      </div>
+
+      <div class="info">
+        <h3>File Watch Server</h3>
+        <p>
+          This application was automatically deployed using the File Watch
+          Server system.
+        </p>
+        <p>
+          When a new Docker image tarball is uploaded, the container is
+          automatically updated.
+        </p>
+        <ul>
+          <li>✅ Automatic Docker image loading</li>
+          <li>✅ Container lifecycle management</li>
+          <li>✅ Zero-downtime deployment</li>
+          <li>✅ Health monitoring</li>
+        </ul>
+      </div>
+
+      <div class="info">
+        <h3>Deployment Process</h3>
+        <ol>
+          <li>Docker image built from source</li>
+          <li>Image exported to tarball</li>
+          <li>Tarball uploaded via SSH/SCP</li>
+          <li>File watcher detects new tarball</li>
+          <li>Old container stopped and removed</li>
+          <li>New container started from updated image</li>
+        </ol>
+      </div>
+    </div>
+
+    <script>
+      // Set current timestamp
+      document.getElementById("timestamp").textContent =
+        new Date().toLocaleString();
+
+      // Simulate real-time updates
+      setInterval(() => {
+        const statusElement = document.querySelector(".status");
+        statusElement.style.backgroundColor =
+          statusElement.style.backgroundColor === "rgb(76, 175, 80)"
+            ? "#4CAF50"
+            : "#45a049";
+      }, 2000);
+    </script>
+  </body>
+</html>

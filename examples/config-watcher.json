@@ -1,0 +1,37 @@
+{
+  "mode": "watcher",
+  "log_level": "info",
+  "uploader": {
+    "docker_build_path": "./examples/sample-app",
+    "image_name": "sample-web-app",
+    "image_tag": "latest",
+    "tarball_path": "./tarballs",
+    "remote_host": "192.168.1.100",
+    "remote_port": 22,
+    "remote_user": "deploy",
+    "remote_key_path": "~/.ssh/id_rsa",
+    "remote_upload_path": "/opt/docker-uploads",
+    "pre_build_commands": ["echo 'Starting build process...'"],
+    "post_build_commands": ["echo 'Build and upload completed successfully'"]
+  },
+  "watcher": {
+    "watch_directory": "/opt/docker-uploads",
+    "container_name": "sample-web-app",
+    "container_ports": ["8080:80"],
+    "container_env": ["NGINX_HOST=localhost", "ENVIRONMENT=production"],
+    "container_volumes": ["/var/log/sample-app:/var/log/nginx"],
+    "pre_load_commands": [
+      "echo 'Preparing to load new image...'",
+      "docker system prune -f --volumes",
+      "mkdir -p /var/log/sample-app"
+    ],
+    "post_load_commands": [
+      "echo 'New container deployed successfully'",
+      "sleep 5",
+      "curl -f http://localhost:8080/health || echo 'Health check failed'",
+      "curl -f http://localhost:8080/api/status || echo 'API check failed'",
+      "docker ps --filter name=sample-web-app --format 'table {{.Names}}\\t{{.Status}}\\t{{.Ports}}'"
+    ],
+    "restart_policy": "unless-stopped"
+  }
+}

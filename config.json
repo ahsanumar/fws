@@ -1,0 +1,40 @@
+{
+  "mode": "watcher",
+  "log_level": "info",
+  "uploader": {
+    "docker_build_path": "./",
+    "image_name": "myapp",
+    "image_tag": "latest",
+    "tarball_path": "./tarballs",
+    "remote_host": "destination.server.com",
+    "remote_port": 22,
+    "remote_user": "deploy",
+    "remote_key_path": "~/.ssh/id_rsa",
+    "remote_upload_path": "/opt/docker-uploads",
+    "build_command": "",
+    "pre_build_commands": [
+      "echo 'Starting build process...'"
+    ],
+    "post_build_commands": [
+      "echo 'Build process completed.'"
+    ]
+  },
+  "watcher": {
+    "watch_directory": "/opt/docker-uploads",
+    "container_name": "myapp",
+    "container_ports": [
+      "8080:8080"
+    ],
+    "container_env": [
+      "NODE_ENV=production"
+    ],
+    "container_volumes": [],
+    "pre_load_commands": [
+      "echo 'Preparing to load new image...'"
+    ],
+    "post_load_commands": [
+      "echo 'New container deployed successfully.'"
+    ],
+    "restart_policy": "unless-stopped"
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "mode": "uploader",
+  "log_level": "info",
+  "uploader": {
+    "docker_build_path": "./examples/sample-app",
+    "image_name": "sample-web-app",
+    "image_tag": "latest",
+    "tarball_path": "./tarballs",
+    "remote_host": "192.168.1.100",
+    "remote_port": 22,
+    "remote_user": "deploy",
+    "remote_key_path": "~/.ssh/id_rsa",
+    "remote_upload_path": "/opt/docker-uploads",
+    "pre_build_commands": [
+      "echo 'Starting build process...'",
+      "echo 'Current directory: $(pwd)'",
+      "echo 'Files in build context:'",
+      "ls -la examples/sample-app/"
+    ],
+    "post_build_commands": [
+      "echo 'Build and upload completed successfully'",
+      "echo 'Tarball uploaded to /opt/docker-uploads'"
+    ]
+  },
+  "watcher": {
+    "watch_directory": "/opt/docker-uploads",
+    "container_name": "sample-web-app",
+    "container_ports": ["8080:80"],
+    "container_env": ["NGINX_HOST=localhost"],
+    "container_volumes": [],
+    "pre_load_commands": ["echo 'Preparing to load new image...'"],
+    "post_load_commands": [
+      "echo 'New container deployed successfully'",
+      "curl -f http://localhost:8080/health || echo 'Health check failed'"
+    ],
+    "restart_policy": "unless-stopped"
+  }
+}
