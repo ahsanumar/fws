@@ -5,7 +5,7 @@
 # Variables
 APP_NAME = file-watch-server
 GO_VERSION = 1.21
-BUILD_DIR = build
+BUILD_DIR = dist
 BINARY_NAME = fws
 
 # Build flags
@@ -17,7 +17,8 @@ all: build
 # Build the application
 build:
 	@echo "Building $(APP_NAME)..."
-	go build $(LDFLAGS) -o $(BINARY_NAME) .
+	mkdir -p $(BUILD_DIR)
+	go build $(LDFLAGS) -o $(BUILD_DIR)/$(BINARY_NAME) .
 
 # Build for multiple platforms
 build-all:
@@ -64,44 +65,43 @@ format:
 # Clean build artifacts
 clean:
 	@echo "Cleaning build artifacts..."
-	rm -f fws
 	rm -rf $(BUILD_DIR)
 	rm -f coverage.out coverage.html
 
 # Initialize configuration
 init-config:
 	@echo "Initializing configuration..."
-	./fws init
+	$(BUILD_DIR)/$(BINARY_NAME) init
 
 # Run in uploader mode
 run-uploader:
 	@echo "Running in uploader mode..."
-	./fws --mode uploader --config config.json --verbose
+	$(BUILD_DIR)/$(BINARY_NAME) --mode uploader --config config.json --verbose
 
 # Run in watcher mode
 run-watcher:
 	@echo "Running in watcher mode..."
-	./fws --mode watcher --config config.json --verbose
+	$(BUILD_DIR)/$(BINARY_NAME) --mode watcher --config config.json --verbose
 
 # Run in watcher daemon mode
 run-watcher-daemon:
 	@echo "Running in watcher daemon mode..."
-	./fws --mode watcher --config config.json --daemon
+	$(BUILD_DIR)/$(BINARY_NAME) --mode watcher --config config.json --daemon
 
 # Show status
 status:
 	@echo "Checking container status..."
-	./fws status --config config.json
+	$(BUILD_DIR)/$(BINARY_NAME) status --config config.json
 
 # Show logs
 logs:
 	@echo "Showing container logs..."
-	./fws logs --config config.json
+	$(BUILD_DIR)/$(BINARY_NAME) logs --config config.json
 
 # Install the binary system-wide
 install: build
 	@echo "Installing fws to /usr/local/bin..."
-	sudo cp fws /usr/local/bin/
+	sudo cp $(BUILD_DIR)/$(BINARY_NAME) /usr/local/bin/
 	sudo chmod +x /usr/local/bin/fws
 
 # Uninstall the binary
